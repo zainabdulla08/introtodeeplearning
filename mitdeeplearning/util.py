@@ -12,21 +12,46 @@ def display_model(model):
     return ipythondisplay.Image("tmp.png")
 
 
-def plot_sample(x, y, vae):
+def plot_sample(x, y, vae, backend='tf'):
+    """Plot original and reconstructed images side by side.
+    
+    Args:
+        x: Input images array of shape [B, H, W, C] (TF) or [B, C, H, W] (PT)
+        y: Labels array of shape [B] where 1 indicates a face
+        vae: VAE model (TensorFlow or PyTorch)
+        framework: 'tf' or 'pt' indicating which framework to use
+    """
     plt.figure(figsize=(2, 1))
-    plt.subplot(1, 2, 1)
 
-    idx = np.where(y == 1)[0][0]
+    if backend == 'tf':
+        idx = np.where(y == 1)[0][0]
+        _, _, _, recon = vae(x)
+        recon = np.clip(recon, 0, 1)
+
+    elif backend == 'pt':
+        y = y.detach().cpu().numpy()
+        face_indices = np.where(y == 1)[0]
+        idx = face_indices[0] if len(face_indices) > 0 else 0
+
+        with torch.inference_mode():
+            _, _, _, recon = vae(x)
+        recon = torch.clamp(recon, 0, 1)
+        recon = recon.permute(0, 2, 3, 1).detach().cpu().numpy()
+        x = x.permute(0, 2, 3, 1).detach().cpu().numpy()
+
+    else:
+        raise ValueError("framework must be 'tf' or 'pt'")
+
+    plt.subplot(1, 2, 1)
     plt.imshow(x[idx])
     plt.grid(False)
 
-    plt.subplot(1, 2, 2)
-    _, _, _, recon = vae(x)
-    recon = np.clip(recon, 0, 1)
+    plt.subplot(1, 2, 2) 
     plt.imshow(recon[idx])
     plt.grid(False)
 
-    # plt.show()
+    if backend == 'pt':
+        plt.show()
 
 
 class LossHistory:
