@@ -1,6 +1,6 @@
 # MIT 6.S191 Lab 1: Intro to Deep Learning in Python and Music Generation with RNNs
 
-![alt text](https://github.com/aamini/introtodeeplearning/raw/master/lab1/img/music_waveform.png)
+![alt text](https://github.com/MITDeepLearning/introtodeeplearning/raw/master/lab1/img/music_waveform.png)
 ## Part 1: Intro to Deep Learning in Python -- TensorFlow and PyTorch
 TensorFlow ("TF") and PyTorch ("PT") are software libraries used in machine learning. Here we'll learn how computations are represented and how to define simple neural networks in TensorFlow and PyTorch. The TensorFlow labs will be prefixed by `TF`; PyTorch labs will be prefixed by `PT`.
 
