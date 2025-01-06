@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import tensorflow as tf
 import time
 import numpy as np
 
@@ -8,6 +7,7 @@ from string import Formatter
 
 
 def display_model(model):
+    import tensorflow as tf
     tf.keras.utils.plot_model(model, to_file="tmp.png", show_shapes=True)
     return ipythondisplay.Image("tmp.png")
 
@@ -29,6 +29,7 @@ def plot_sample(x, y, vae, backend='tf'):
         recon = np.clip(recon, 0, 1)
 
     elif backend == 'pt':
+        import torch 
         y = y.detach().cpu().numpy()
         face_indices = np.where(y == 1)[0]
         idx = face_indices[0] if len(face_indices) > 0 else 0
