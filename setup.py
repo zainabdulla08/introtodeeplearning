@@ -12,8 +12,13 @@ install_deps = [
     'numpy',
     'regex',
     'tqdm',
-    'gym'
-
+    'gym',
+    'opik',
+    'openai',
+    'transformers',
+    'datasets',
+    'peft',
+    'lion-pytorch',
 ]
 tf_ver = '2.0.0a'
 if get_dist('tensorflow>='+tf_ver) is None and get_dist('tensorflow_gpu>='+tf_ver) is None:
@@ -38,7 +43,7 @@ setup(
     'Programming Language :: Python :: 3.6',
   ],
   package_data={
-      'mitdeeplearning': ['bin/*', 'data/*', 'data/faces/DF/*', 'data/faces/DM/*', 'data/faces/LF/*', 'data/faces/LM/*'],
+      'mitdeeplearning': ['bin/*', 'data/*', 'data/text_styles/*', 'data/faces/DF/*', 'data/faces/DM/*', 'data/faces/LF/*', 'data/faces/LM/*'],
    },
 
 )
