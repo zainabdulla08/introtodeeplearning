@@ -9,11 +9,17 @@ def get_dist(pkgname):
         return None
 
 install_deps = [
+    'comet_ml',
     'numpy',
     'regex',
     'tqdm',
-    'gym'
-
+    'gym',
+    'opik',
+    'openai',
+    'transformers',
+    'datasets',
+    'peft',
+    'lion-pytorch',
 ]
 tf_ver = '2.0.0a'
 if get_dist('tensorflow>='+tf_ver) is None and get_dist('tensorflow_gpu>='+tf_ver) is None:
@@ -22,13 +28,13 @@ if get_dist('tensorflow>='+tf_ver) is None and get_dist('tensorflow_gpu>='+tf_ve
 setup(
   name = 'mitdeeplearning',         # How you named your package folder (MyLib)
   packages = ['mitdeeplearning'],   # Chose the same as "name"
-  version = '0.7.3',      # Start with a small number and increase it with every change you make
+  version = '0.7.5',      # Start with a small number and increase it with every change you make
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'Official software labs for MIT Introduction to Deep Learning (http://introtodeeplearning.com)',   # Give a short description about your library
   author = 'Alexander Amini',                   # Type in your name
   author_email = 'introtodeeplearning-staff@mit.edu',      # Type in your E-Mail
   url = 'http://introtodeeplearning.com',   # Provide either the link to your github or to your website
-  download_url = 'https://github.com/MITDeepLearning/introtodeeplearning/archive/v0.7.3.tar.gz',    # I explain this later on
+  download_url = 'https://github.com/MITDeepLearning/introtodeeplearning/archive/v0.7.5.tar.gz',    # I explain this later on
   keywords = ['deep learning', 'neural networks', 'tensorflow', 'introduction'],   # Keywords that define your package best
   install_requires=install_deps,
   classifiers=[
@@ -38,7 +44,7 @@ setup(
     'Programming Language :: Python :: 3.6',
   ],
   package_data={
-      'mitdeeplearning': ['bin/*', 'data/*', 'data/faces/DF/*', 'data/faces/DM/*', 'data/faces/LF/*', 'data/faces/LM/*'],
+      'mitdeeplearning': ['bin/*', 'data/*', 'data/text_styles/*', 'data/faces/DF/*', 'data/faces/DM/*', 'data/faces/LF/*', 'data/faces/LM/*'],
    },
 
 )
