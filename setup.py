@@ -9,6 +9,7 @@ def get_dist(pkgname):
         return None
 
 install_deps = [
+    'comet_ml',
     'numpy',
     'regex',
     'tqdm',
